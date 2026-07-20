@@ -1,0 +1,50 @@
+import CategoryFilter from '@/components/CategoryFilter';
+import PriceFilter from '@/components/PriceFilter';
+import SortDropdown from '@/components/SortDropdown';
+import GigCard from '@/components/GigCard';
+import SearchBar from '@/components/SearchBar';
+import Pagination from '@/components/Pagination';
+import { fetchGigs } from '@/lib/gigs/data';
+import React from 'react';
+
+export const metadata = {
+  title: "GigsVerse - Browse Gigs",
+};
+
+const GigsPage = async ({ searchParams }) => {
+
+  const sParams = await searchParams;
+
+  const { gigs, totalPages, currentPage } = await fetchGigs(
+    sParams?.search || "",
+    sParams?.category || "",
+    sParams?.minPrice || "",
+    sParams?.maxPrice || "",
+    sParams?.sortBy || "",
+    sParams?.page || "1"
+  );
+
+  return (
+    <div>
+      <div className='flex justify-end items-end gap-[10px] flex-col mt-[20px] mx-[100px]'>
+        <SearchBar></SearchBar>
+        <div className='flex gap-[10px] items-center'>
+          <CategoryFilter></CategoryFilter>
+          <PriceFilter></PriceFilter>
+          <SortDropdown></SortDropdown>
+        </div>
+      </div>
+      <div className='text-4xl text-center font-bold text-amber-900'>All Gigs</div>
+      <div>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 py-[30px] px-[20px] md:px-[30px] gap-[20px] space-y-[20px]'>
+          {
+            gigs?.map((gig) => <GigCard key={gig._id} gig={gig}></GigCard>
+            )}
+        </div>
+        <Pagination currentPage={currentPage} totalPages={totalPages} />
+      </div>
+    </div>
+
+  )
+}
+export default GigsPage;
