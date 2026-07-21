@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="navbar shadow-sm bg-base-100 border-b border-base-300">
+      <div className="navbar shadow-sm bg-base-100 border-b border-base-300 relative z-50">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -30,7 +30,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={-1}
-              className="menu menu-sm dropdown-content bg-base-200 rounded-box z-1 mt-3 w-52 p-2 shadow border border-base-300"
+              className="menu menu-sm dropdown-content bg-base-200 rounded-box z-50 mt-3 w-52 p-2 shadow border border-base-300"
             >
               <li className='font-semibold'><Link href="/">Home</Link></li>
               <li className='font-semibold'><Link href="/gigs">Gigs</Link></li>
@@ -88,7 +88,7 @@ const Navbar = () => {
                   </Avatar>
                   <span className="font-medium hidden sm:inline">{session?.user?.name}</span>
                 </div>
-                <ul tabIndex={-1} className="dropdown-content menu bg-base-200 border border-base-300 rounded-box z-10 w-56 p-2 shadow-sm">
+                <ul tabIndex={-1} className="dropdown-content menu bg-base-200 border border-base-300 rounded-box z-50 w-56 p-2 shadow-sm">
 
                   <li className="p-0">
                     <div className="flex flex-col items-start w-full px-3 py-2 gap-0">
