@@ -62,34 +62,6 @@ You can also sign in with **Google** directly, or register your own account.
 
 ---
 
-## ⚙️ Environment Variables
-
-### Frontend (`.env.local`)
-```
-
-NEXT_PUBLIC_API_URL=
-NEXT_PUBLIC_BETTER_AUTH_URL=
-BETTER_AUTH_URL=
-BETTER_AUTH_SECRET=
-MONGODB_URI=
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-
-```
-
-### Backend (`.env`)
-```
-
-MONGODB_URI=
-CLIENT_URL=
-GEMINI_API_KEY=
-GROQ_API_KEY=
-PORT=8080
-
-```
-
----
-
 ## 🚀 Getting Started Locally
 
 ### Backend
