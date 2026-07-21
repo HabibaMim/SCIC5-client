@@ -6,9 +6,7 @@ A full-stack freelance marketplace where users can browse services ("gigs"), pla
 
 ## 🔗 Live Link
 
-[Add your deployed frontend URL here] <!-- e.g. https://gigsverse.vercel.app -->
-
-**Backend API:** [Add your deployed Express server URL here]
+https://gigsverse-client.vercel.app
 
 ---
 
@@ -129,13 +127,3 @@ npm run dev
 The frontend runs on `http://localhost:3000` and expects the backend running on `http://localhost:8080` (or whatever `NEXT_PUBLIC_API_URL` points to).
 
 ---
-
-## 📸 Screenshots
-
-<!-- Add screenshots or a GIF walkthrough here -->
-
----
-
-## 📄 License
-
-<!-- Add your license here, e.g. MIT -->
