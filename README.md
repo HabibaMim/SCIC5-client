@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# GigsVerse
 
-## Getting Started
+A full-stack freelance marketplace where users can browse services ("gigs"), place orders instantly, and list their own skills for sale — think a lightweight Fiverr-style platform built with Next.js and Express.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🔗 Live Link
+
+[Add your deployed frontend URL here] <!-- e.g. https://gigsverse.vercel.app -->
+
+**Backend API:** [Add your deployed Express server URL here]
+
+---
+
+## 🔑 Demo Credentials
+
+Use the **"Demo login credentials"** button on the login page to autofill instantly, or log in manually:
+
+- **Email:** `demo@gigsverse.com`
+- **Password:** `Demo1234`
+
+You can also sign in with **Google** directly, or register your own account.
+
+---
+
+## ✨ Key Features
+
+- **Browse & discover gigs** — search by title, filter by category and price range, sort by price or popularity
+- **Instant ordering** — place an order on any gig with optional special requirements, no seller approval step
+- **List your own services** — create, edit, and delete gig listings from a personal dashboard
+- **My Orders / My Listings** — track everything you've ordered and everything you're selling, with live order counts
+- **Authentication** — email/password and Google sign-in, powered by Better Auth
+- **Cross-service JWT auth** — secure token-based communication between the Next.js frontend and the standalone Express API
+- **AI-powered gig description generator** — sellers can auto-generate a polished gig description from a title, category, and keywords (via Google Gemini)
+- **AI support chatbot** — a context-aware assistant that answers questions about the platform, remembers conversation history, and suggests relevant follow-up questions (via Groq/Llama)
+- **Responsive, themed UI** — built with Tailwind CSS and daisyUI, dark theme with a pink accent palette throughout
+- **Skeleton loaders & loading states** — polished perceived performance across gig listings, detail pages, and dashboards
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **Next.js** (App Router)
+- **React**
+- **Tailwind CSS** + **daisyUI**
+- **HeroUI** (`@heroui/react`) — form components
+- **Better Auth** (`better-auth/react`) — authentication client, with JWT plugin
+- **React Hot Toast** — notifications
+- **React Icons**
+
+### Backend
+- **Node.js** + **Express**
+- **MongoDB** (native driver)
+- **Better Auth** — server-side auth, MongoDB adapter, JWT plugin (JWKS-based token verification)
+- **jose** — JWT verification middleware
+- **Groq SDK** (Llama 3.3 70B) — AI support chatbot
+- **Google Generative AI** (Gemini) — AI gig description generator
+
+### Auth & Security
+- Email/password + Google OAuth via Better Auth
+- Cross-origin JWT verification using a remote JWKS endpoint (`/api/auth/jwks`)
+- Protected routes on both frontend (middleware) and backend (`verifyToken` middleware)
+
+---
+
+## 📂 Core Pages
+
+| Route | Description |
+|---|---|
+| `/` | Homepage with rotating banner and featured gigs |
+| `/gigs` | Browse all gigs — search, filter, sort, paginate |
+| `/gigs/[gigId]` | Gig detail page with order flow |
+| `/add-gig` | Create a new gig listing (auth required) |
+| `/gigs/[gigId]/edit` | Edit an existing gig (auth required) |
+| `/my-listings` | Manage your own gig listings (auth required) |
+| `/my-orders` | View and cancel your orders (auth required) |
+| `/login` / `/register` | Authentication pages |
+| `/help` | FAQ, step-by-step guides, and contact form |
+| `/about` | About the platform |
+
+---
+
+## ⚙️ Environment Variables
+
+### Frontend (`.env.local`)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+NEXT_PUBLIC_API_URL=
+NEXT_PUBLIC_BETTER_AUTH_URL=
+BETTER_AUTH_URL=
+BETTER_AUTH_SECRET=
+MONGODB_URI=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Backend (`.env`)
+```
 
-## Learn More
+MONGODB_URI=
+CLIENT_URL=
+GEMINI_API_KEY=
+GROQ_API_KEY=
+PORT=8080
 
-To learn more about Next.js, take a look at the following resources:
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Getting Started Locally
 
-## Deploy on Vercel
+### Backend
+```bash
+cd marketplace-server
+npm install
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Frontend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+cd marketplace
+npm install
+npm run dev
+```
+
+The frontend runs on `http://localhost:3000` and expects the backend running on `http://localhost:8080` (or whatever `NEXT_PUBLIC_API_URL` points to).
+
+---
+
+## 📸 Screenshots
+
+<!-- Add screenshots or a GIF walkthrough here -->
+
+---
+
+## 📄 License
+
+<!-- Add your license here, e.g. MIT -->
