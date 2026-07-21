@@ -17,5 +17,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: ['/add-gig', '/my-gigs', '/my-orders'],
+  matcher: ['/add-gig', '/my-gigs', '/my-orders', '/gigs/:gigId'],
 };
