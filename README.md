@@ -4,7 +4,7 @@ A full-stack freelance marketplace where users can browse services ("gigs"), pla
 
 ---
 
-## 🚀 Live Link
+## ✨ Live Link
 
 🔗 https://gigsverse-client.vercel.app
 
