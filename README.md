@@ -4,9 +4,9 @@ A full-stack freelance marketplace where users can browse services ("gigs"), pla
 
 ---
 
-## 🔗 Live Link
+## 🚀 Live Link
 
-https://gigsverse-client.vercel.app
+🔗 https://gigsverse-client.vercel.app
 
 ---
 
@@ -59,23 +59,6 @@ You can also sign in with **Google** directly, or register your own account.
 - Email/password + Google OAuth via Better Auth
 - Cross-origin JWT verification using a remote JWKS endpoint (`/api/auth/jwks`)
 - Protected routes on both frontend (middleware) and backend (`verifyToken` middleware)
-
----
-
-## 📂 Core Pages
-
-| Route | Description |
-|---|---|
-| `/` | Homepage with rotating banner and featured gigs |
-| `/gigs` | Browse all gigs — search, filter, sort, paginate |
-| `/gigs/[gigId]` | Gig detail page with order flow |
-| `/add-gig` | Create a new gig listing (auth required) |
-| `/gigs/[gigId]/edit` | Edit an existing gig (auth required) |
-| `/my-listings` | Manage your own gig listings (auth required) |
-| `/my-orders` | View and cancel your orders (auth required) |
-| `/login` / `/register` | Authentication pages |
-| `/help` | FAQ, step-by-step guides, and contact form |
-| `/about` | About the platform |
 
 ---
 
