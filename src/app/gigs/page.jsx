@@ -32,7 +32,7 @@ const GigsPage = async ({ searchParams }) => {
 
       <div className='flex justify-end items-end gap-[10px] flex-col mt-[20px] mx-[100px]'>
         <SearchBar></SearchBar>
-        <div className='flex gap-[15px] items-center justify-between'>
+        <div className='md:flex grid grid-cols-1 gap-[15px] items-center justify-between'>
             <PriceFilter></PriceFilter>
           <CategoryFilter></CategoryFilter>
           
