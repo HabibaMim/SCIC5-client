@@ -5,6 +5,7 @@ import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import CallToAction from "@/components/CallToAction";
+import Newsletter from "@/components/Newsletter";
 
 export const metadata = {
   title: "GigsVerse - Home",
@@ -22,8 +23,9 @@ export default function Home() {
       <HowItWorks />
       <Testimonials />
        <CallToAction />
+       
       <FAQ />
-    
+    <Newsletter></Newsletter>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 // components/ChatWidget.jsx
+// components/ChatWidget.jsx
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { FaComments, FaTimes, FaPaperPlane } from "react-icons/fa";
@@ -8,20 +9,27 @@ const ChatWidget = () => {
   const [messages, setMessages] = useState([
     { role: "assistant", content: "Hi! How can I help you on GigsVerse today?" },
   ]);
+  const [suggestions, setSuggestions] = useState([
+    "How do I place an order?",
+    "How do I list a gig?",
+    "What are the login options?",
+  ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const bottomRef = useRef(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, open]);
+  }, [messages, open, loading]);
 
-  const sendMessage = async () => {
-    if (!input.trim() || loading) return;
+  const sendMessage = async (overrideText) => {
+    const textToSend = overrideText ?? input;
+    if (!textToSend.trim() || loading) return;
 
-    const newMessages = [...messages, { role: "user", content: input }];
+    const newMessages = [...messages, { role: "user", content: textToSend }];
     setMessages(newMessages);
     setInput("");
+    setSuggestions([]);
     setLoading(true);
 
     try {
@@ -37,15 +45,21 @@ const ChatWidget = () => {
       }
 
       setMessages((prev) => [...prev, { role: "assistant", content: data.reply }]);
+      setSuggestions(Array.isArray(data.suggestions) ? data.suggestions : []);
     } catch (err) {
       console.error("Chat request failed:", err);
       setMessages((prev) => [
         ...prev,
         { role: "assistant", content: "Sorry, something went wrong." },
       ]);
+      setSuggestions([]);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    sendMessage(suggestion);
   };
 
   return (
@@ -72,11 +86,29 @@ const ChatWidget = () => {
                 {m.content}
               </div>
             ))}
+
             {loading && (
-              <div className="self-start bg-base-300 text-base-content px-3 py-2 rounded-xl text-sm">
-                Typing...
+              <div className="self-start bg-base-300 text-base-content px-3 py-2 rounded-xl text-sm flex items-center gap-1">
+                <span className="w-1.5 h-1.5 bg-base-content/50 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                <span className="w-1.5 h-1.5 bg-base-content/50 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                <span className="w-1.5 h-1.5 bg-base-content/50 rounded-full animate-bounce"></span>
               </div>
             )}
+
+            {!loading && suggestions.length > 0 && (
+              <div className="flex flex-col gap-1.5 mt-1">
+                {suggestions.map((s, i) => (
+                  <button
+                    key={i}
+                    onClick={() => handleSuggestionClick(s)}
+                    className="self-start text-xs text-left bg-base-100 hover:bg-pink-400/10 text-pink-400 border border-pink-400/40 rounded-full px-3 py-1.5 transition"
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            )}
+
             <div ref={bottomRef} />
           </div>
 
@@ -89,7 +121,7 @@ const ChatWidget = () => {
               className="input input-sm input-bordered flex-1 border-base-300 text-base-content bg-base-100 placeholder:text-base-content/40"
             />
             <button
-              onClick={sendMessage}
+              onClick={() => sendMessage()}
               className="btn btn-sm bg-pink-500 hover:bg-pink-600 text-white border-none"
             >
               <FaPaperPlane />
